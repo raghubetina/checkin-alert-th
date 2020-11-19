@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :email
       t.string :password_digest
       t.string :phone_number
-      t.integer :flights_count
+      t.integer :flights_count, { :default => 0 }
 
       t.timestamps
     end
