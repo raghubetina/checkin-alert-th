@@ -4,8 +4,10 @@ class FlightsController < ApplicationController
 
     matching_flights = @current_user.flights
 
-    @list_of_flights = matching_flights.order({ :created_at => :desc })
+    @upcoming_flights = matching_flights.where("departs_at > ?", Time.now)
 
+    @past_flights = matching_flights.where("departs_at <= ?", Time.now)
+    
     render({ :template => "flights/index.html.erb" })
   end
 
