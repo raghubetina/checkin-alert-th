@@ -11,4 +11,9 @@
 #  user_id     :integer
 #
 class Flight < ApplicationRecord
+  belongs_to(:user, { :required => false, :class_name => "User", :foreign_key => "user_id", :counter_cache => true })
+
+  validates(:departs_at, { :presence => true })
+
+  validates(:departs_at, { :uniqueness => { :scope => ["user_id"] } })
 end
